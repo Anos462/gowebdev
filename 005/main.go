@@ -12,10 +12,13 @@ func init() {
 }
 
 func main() {
-	http.HandleFunc("/", name)
+	http.HandleFunc("/", index)
 	http.ListenAndServe(":8080", nil)
 }
 
-func name(w http.ResponseWriter, r *http.Request) {
-	tpl.ExecuteTemplate(w, "name.gohtml", "This is string")
+func index(w http.ResponseWriter, r *http.Request) {
+	m := map[string]bool{}
+	m["Aaron"] = true
+	m["Lilly"] = true
+	tpl.ExecuteTemplate(w, "name.gohtml", m)
 }
